@@ -1,0 +1,80 @@
+*******important*******  
+
+typeof null → "object" (BUG in JavaScript)
+
+Why does this happen? 
+In early JavaScript (1995), values were stored with type tags. 
+The type tag for objects was 0. 
+null also got the tag 0 by mistake. 
+The mistake became permanent because changing it would break the web.
+
+So this is a historical bug: 
+typeof null  // "object"   // ❌ incorrect but permanent 
+ 
+
+🟧 Why does typeof null return "object"?
+
+Answer:
+It’s a bug in JavaScript from the 1995 implementation.
+Early JS stored types in binary tags; the tag for objects was 000, and null accidentally used the same tag.
+The mistake remained to avoid breaking existing code.
+
+Best short interview line:
+
+"typeof null is a historical bug; null is actually a primitive."
+
+🟪 Difference between null and undefined?
+
+Answer: 
+undefined → variable declared but not assigned. 
+null → explicitly assigned empty value.
+
+Interview line:
+
+"undefined is default; null is intentional."
+
+🟧 What is typeof undefined? Why? 
+Answer:
+typeof undefined is "undefined" because it is its own primitive type. 
+typeof undefined // "undefined"
+
+🟦 What is typeof NaN? 
+Answer:
+typeof NaN is "number".
+
+Interview line: 
+"NaN means Not-a-Number but its type is number — it's an invalid number, not a non-number."
+
+🟩 How do you correctly check for null?
+
+Answer: 
+value === null
+
+
+Because: typeof null === "object" // bug
+
+🟫 What is the result of typeof an array? Why?
+
+Answer: 
+typeof []  // "object" 
+Why? Because arrays are internally objects.
+
+🟩 How to check if something is an array?
+
+Answer: Array.isArray(arr) 
+This is the standard and safest method.
+
+🟦 What does typeof function return?
+
+Answer:
+It returns "function" (special case even though functions are objects). 
+typeof function(){}  // "function"
+
+🟫 What is the difference between == and ===? 
+Answer: 
+== → compares values (performs type coercion) 
+=== → compares value + type (strict)
+
+Example: 
+0 == "0"      // true
+0 === "0"     // false
